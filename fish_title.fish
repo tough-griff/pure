@@ -3,11 +3,13 @@ function fish_title
   set -l basename (command basename $PWD)
   set -l current_folder (__parse_current_folder)
   set -l command $argv[1]
-  set -l prompt "$basename: $command $pure_symbol_horizontal_bar $_"
+  set -l title "$current_folder $pure_symbol_horizontal_bar"
 
   if test -z "$command"
-    set prompt "$current_folder $pure_symbol_horizontal_bar $_"
+    set title "$title $_"
+  else
+    set title "$title $command"
   end
 
-  echo $prompt
+  echo $title
 end
