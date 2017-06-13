@@ -2,10 +2,6 @@
 
 > Port of the [`pure`](https://github.com/sindresorhus/pure) ZSH theme to Fish 🐟
 
-<p align=center>
-  <img width=585 src=screenshot.png>
-</p>
-
 ## Install
 
 ### Manually
@@ -14,7 +10,7 @@ Via [cURL](https://curl.haxx.se):
 
 ```sh
 $ # Download the installer to `/tmp`
-$ curl -Ls https://raw.github.com/rafaelrinaldi/pure/master/installer.fish > /tmp/pure_installer.fish
+$ curl -Ls https://raw.github.com/tough-griff/pure-fish/master/installer.fish > /tmp/pure_installer.fish
 $ # Source and trigger the installer
 $ source /tmp/pure_installer.fish; and install_pure
 ```
@@ -22,13 +18,7 @@ $ source /tmp/pure_installer.fish; and install_pure
 ### [Fisherman](http://fisherman.sh)
 
 ```fish
-$ fisher rafaelrinaldi/pure
-```
-
-### [Oh My Fish!](https://github.com/oh-my-fish)
-
-```fish
-$ omf install pure
+$ fisher tough-griff/pure-fish
 ```
 
 ## Features
