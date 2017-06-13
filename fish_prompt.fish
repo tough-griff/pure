@@ -1,16 +1,12 @@
 # Pure
-# by Rafael Rinaldi
-# https://github.com/rafaelrinaldi/pure
+# modified by Griffin Yourick
+# https://github.com/tough-griff/pure-fish
 # MIT License
-
-# Whether or not is a fresh session
-set -g __pure_fresh_session 1
 
 # Deactivate the default virtualenv prompt so that we can add our own
 set -gx VIRTUAL_ENV_DISABLE_PROMPT 1
 
 # Symbols
-
 __pure_set_default pure_symbol_prompt "❯"
 __pure_set_default pure_symbol_git_down_arrow "⇣"
 __pure_set_default pure_symbol_git_up_arrow "⇡"
@@ -18,15 +14,16 @@ __pure_set_default pure_symbol_git_dirty "*"
 __pure_set_default pure_symbol_horizontal_bar "—"
 
 # Colors
-
 __pure_set_default pure_color_red (set_color red)
 __pure_set_default pure_color_green (set_color green)
 __pure_set_default pure_color_blue (set_color blue)
 __pure_set_default pure_color_yellow (set_color yellow)
 __pure_set_default pure_color_cyan (set_color cyan)
-__pure_set_default pure_color_gray (set_color 93A1A1)
+__pure_set_default pure_color_magenta (set_color magenta)
+__pure_set_default pure_color_gray (set_color brblack)
 __pure_set_default pure_color_normal (set_color normal)
 
+__pure_set_default pure_color_symbol $pure_color_magenta
 __pure_set_default pure_username_color $pure_color_gray
 __pure_set_default pure_host_color $pure_color_gray
 __pure_set_default pure_root_color $pure_color_normal
@@ -35,7 +32,7 @@ __pure_set_default pure_root_color $pure_color_normal
 # 0 - end of prompt, default
 # 1 - start of prompt
 # Any other value defaults to the default behaviour
-__pure_set_default pure_user_host_location 0
+__pure_set_default pure_user_host_location 1
 
 # Max execution time of a process before its run time is shown when it exits
 __pure_set_default pure_command_max_exec_time 5
@@ -44,11 +41,10 @@ function fish_prompt
   # Save previous exit code
   set -l exit_code $status
 
-  # Set default color symbol to green meaning it's all good!
-  set -l color_symbol $pure_color_green
+  # Set default color symbol to magenta meaning it's all good!
+  set -l color_symbol $pure_color_symbol
 
   # Template
-
   set -l user_and_host ""
   set -l current_folder (__parse_current_folder)
   set -l git_branch_name ""
@@ -57,10 +53,7 @@ function fish_prompt
   set -l command_duration ""
   set -l prompt ""
 
-  # Do not add a line break to a brand new session
-  if test $__pure_fresh_session -eq 0
-    set prompt $prompt "\n"
-  end
+  set prompt $prompt "\n"
 
   # Check if user is in an SSH session
   if [ "$SSH_CONNECTION" != "" ]
@@ -99,7 +92,7 @@ function fish_prompt
   set -l is_git_repository (command git rev-parse --is-inside-work-tree ^/dev/null)
 
   if test -n "$is_git_repository"
-    set git_branch_name (__parse_git_branch)
+    set git_branch_name git:(__parse_git_branch)
 
     # Check if there are files to commit
     set -l is_git_dirty (command git status --porcelain --ignore-submodules ^/dev/null)
@@ -128,7 +121,7 @@ function fish_prompt
     end
 
     # Format Git prompt output
-    set prompt $prompt "$pure_color_gray$git_branch_name$git_dirty$pure_color_normal$pure_color_cyan$git_arrows$pure_color_normal "
+    set prompt $prompt "$pure_color_gray$git_branch_name$git_dirty$pure_color_cyan$git_arrows$pure_color_normal "
   end
 
   if test $pure_user_host_location -ne 1
@@ -149,6 +142,4 @@ function fish_prompt
   set prompt $prompt "$color_symbol$pure_symbol_prompt$pure_color_normal "
 
   echo -e -s $prompt
-
-  set __pure_fresh_session 0
 end
