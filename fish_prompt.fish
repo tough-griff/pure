@@ -121,6 +121,12 @@ function pre_prompt --on-event fish_prompt
     set pre_prompt $pre_prompt $user_and_host
   end
 
+  # If there's a package.json in any parent directories, show node version
+  if __find_up 'package.json'
+    set -l node_version (node --version)
+    set pre_prompt $pre_prompt "$pure_color_magenta$node_verision$pure_color_normal "
+  end
+
   # Prompt command execution duration
   if test -n "$CMD_DURATION"
     set command_duration (__format_time $CMD_DURATION $pure_command_max_exec_time)
