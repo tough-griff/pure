@@ -15,6 +15,7 @@ __pure_set_default pure_symbol_git_down_arrow "⇣"
 __pure_set_default pure_symbol_git_up_arrow "⇡"
 __pure_set_default pure_symbol_git_dirty "*"
 __pure_set_default pure_symbol_horizontal_bar "—"
+__pure_set_default pure_symbol_node "⬡"
 
 # Colors
 __pure_set_default pure_color_red (set_color red)
@@ -124,7 +125,7 @@ function pre_prompt --on-event fish_prompt
   # If there's a package.json in any parent directories, show node version
   if __find_up 'package.json'
     set -l node_version (node --version)
-    set pre_prompt $pre_prompt "$pure_color_magenta$node_version$pure_color_normal "
+    set pre_prompt $pre_prompt "$pure_color_green$pure_symbol_node$pure_color_normal $node_version "
   end
 
   # Prompt command execution duration
