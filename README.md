@@ -1,4 +1,4 @@
-# pure [![Fish Shell Version](https://img.shields.io/badge/fish-v2.5.0-007EC7.svg?style=flat-square)](http://fishshell.com)
+# pure [![Fish Shell Version](https://img.shields.io/badge/fish-v2.5.0-007EC7.svg?style=flat-square)](http://fishshell.com) [![Build Status][travis-badge]][travis-link]
 
 > Port of the [`pure`](https://github.com/sindresorhus/pure) ZSH theme to Fish 🐟
 
@@ -71,6 +71,12 @@ set pure_user_host_location 1
 set pure_command_max_exec_time 5
 ```
 
+## Tests
+
+**requirements:** [`fishtape`](https://github.com/fisherman/fishtape).
+
+    fishtape tests/*.test.fish
+
 ## Maintainers
 
 * [Rafael Rinaldi](https://github.com/rafaelrinaldi)
@@ -81,3 +87,6 @@ Kudos to all our awesome [:yellow_heart: contributors :yellow_heart:](../..//gra
 ## License
 
 MIT © [Rafael Rinaldi](http://rinaldi.io)
+
+[travis-link]: https://travis-ci.org/rafaelrinaldi/pure
+[travis-badge]: https://img.shields.io/travis/rafaelrinaldi/pure.svg
