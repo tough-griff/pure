@@ -124,7 +124,7 @@ function pre_prompt --on-event fish_prompt
   # If there's a package.json in any parent directories, show node version
   if __find_up 'package.json'
     set -l node_version (node --version)
-    set pre_prompt $pre_prompt "$pure_color_magenta$node_verision$pure_color_normal "
+    set pre_prompt $pre_prompt "$pure_color_magenta$node_version$pure_color_normal "
   end
 
   # Prompt command execution duration
