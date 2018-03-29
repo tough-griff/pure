@@ -1,10 +1,14 @@
 function __find_up -d "Search for a file above any given directory"
   set -l search $argv[1]
-  set -q $argv[2]; and set -l path (realpath -s .); or set -l path (realpath -s $argv[2])
+  set -q $argv[2]; and set -l dir $PWD; or set -l dir (realpath $argv[2])
 
-  while test $path != '/'
-    test -e "$path/$search"; and return 0
-    set path (realpath -s $path/..)
+  while test $dir != '/'
+    if test -e "$dir/$search"
+      echo "$dir/$search"
+      return 0
+    end
+
+    set -l dir (string replace -r '[^/]*/?$' '' $dir)
   end
 
   return 1
