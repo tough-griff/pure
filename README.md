@@ -1,3 +1,6 @@
+[travis-link]: https://travis-ci.org/rafaelrinaldi/pure
+[travis-badge]: https://img.shields.io/travis/rafaelrinaldi/pure.svg
+
 # pure [![Fish Shell Version](https://img.shields.io/badge/fish-v2.5.0-007EC7.svg?style=flat-square)](http://fishshell.com) [![Build Status][travis-badge]][travis-link]
 
 > Port of the [`pure`](https://github.com/sindresorhus/pure) ZSH theme to Fish 🐟
@@ -9,13 +12,13 @@
 Via [cURL](https://curl.haxx.se):
 
 ```sh
-$ # Download the installer to `/tmp`
-$ curl -Ls https://raw.github.com/tough-griff/pure-fish/master/installer.fish > /tmp/pure_installer.fish
-$ # Source and trigger the installer
-$ source /tmp/pure_installer.fish; and install_pure
+# Download the installer to `/tmp`
+curl -Ls https://raw.github.com/tough-griff/pure-fish/master/installer.fish > /tmp/pure_installer.fish
+# Source and trigger the installer
+source /tmp/pure_installer.fish; and install_pure
 ```
 
-### [Fisherman](http://fisherman.sh)
+### [Fisherman](https://fisherman.github.io)
 
 ```fish
 $ fisher tough-griff/pure-fish
@@ -67,6 +70,12 @@ set pure_root_color $pure_color_red
 # Any other value defaults to the default behaviour
 set pure_user_host_location 1
 
+# Show exit code of last command as a separate prompt character. As described here: https://github.com/sindresorhus/pure/wiki#show-exit-code-of-last-command-as-a-separate-prompt-character
+# 0 - single prompt character, default
+# 1 - separate prompt character
+# Any other value defaults to the default behaviour
+set pure_separate_prompt_on_error 1
+
 # Max execution time of a process before its run time is shown when it exits
 set pure_command_max_exec_time 5
 ```
@@ -76,6 +85,8 @@ set pure_command_max_exec_time 5
 **requirements:** [`fishtape`](https://github.com/fisherman/fishtape).
 
     fishtape tests/*.test.fish
+
+Refer to [installer.md](./installer.md) to test the installer script.
 
 ## Maintainers
 
@@ -88,5 +99,8 @@ Kudos to all our awesome [:yellow_heart: contributors :yellow_heart:](../..//gra
 
 MIT © [Rafael Rinaldi](http://rinaldi.io)
 
-[travis-link]: https://travis-ci.org/rafaelrinaldi/pure
-[travis-badge]: https://img.shields.io/travis/rafaelrinaldi/pure.svg
+---
+
+<p align="center">
+  <a href="https://buymeacoff.ee/rinaldi" title="Buy me a coffee">Buy me a ☕</a>
+</p>
