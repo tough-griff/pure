@@ -1,11 +1,13 @@
-To test the installer locally we created a docker image to provide a clean environment.
+# Testing the installer
+
+To test the installer script locally we created [a docker image](./Dockerfile) to provide a clean environment.
 
 First build the image
 
     docker build \
-            --file installer.Dockerfile \
-            -t pure-installer \
-            ./
+        --file tools/Dockerfile \
+        --tag=pure-installer \
+        ./
 
 Then run it from the project directory
 

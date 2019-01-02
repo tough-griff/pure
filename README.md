@@ -7,13 +7,15 @@
 
 ## Install
 
+**:warning: requirements**: fish `≥2.4`.
+
 ### Manually
 
 Via [cURL](https://curl.haxx.se):
 
 ```sh
 # Download the installer to `/tmp`
-curl -Ls https://raw.github.com/tough-griff/pure-fish/master/tools/installer.fish > /tmp/pure_installer.fish
+curl https://raw.github.com/tough-griff/pure/master/tools/installer.fish --output /tmp/pure_installer.fish --location --silent
 # Source and trigger the installer
 source /tmp/pure_installer.fish; and install_pure
 ```
@@ -21,35 +23,38 @@ source /tmp/pure_installer.fish; and install_pure
 ### [Fisher](https://github.com/jorgebucaran/fisher)
 
 ```fish
-fisher add tough-griff/pure-fish
+fisher add tough-griff/pure
 ```
 
 ### [Oh My Fish!](https://github.com/oh-my-fish)
 
 ```fish
-omf install tough-griff/pure-fish
+omf install tough-griff/pure
+ln -s $OMF_PATH/themes/pure/conf.d/pure.fish ~/.config/fish/conf.d/pure.fish
 ```
+
+:information_source: [why the symlink?](https://github.com/rafaelrinaldi/pure/wiki/Oh-My-Fish-not-currently-supporting-conf.d-snippets-in-plugins-and-themes)
 
 ### [Fundle](https://github.com/tuvistavie/fundle)
 
 ```fish
-fundle plugin tough-griff/pure-fish;
+fundle plugin tough-griff/pure;
 fundle install;
 ```
 
 ## Features
 
-* Fully customizable
-* Display current directory tail
-* Display Git branch name
-* Display whether or not the working copy is dirty
-* Display ⇡ if there are stuff to be pushed
-* Display ⇣ if there are stuff to be pulled
-* Display prompt symbol in red if previous command has failed
-* Display the current folder and command when a process is running
-* Display username and host when in an SSH session
-* Display duration of failed process (defaults to `5`)
-* Display python virtualenv name if activated
+- Fully customizable
+- Display current directory tail
+- Display Git branch name
+- Display whether or not the working copy is dirty
+- Display ⇡ if there are stuff to be pushed
+- Display ⇣ if there are stuff to be pulled
+- Display prompt symbol in red if previous command has failed
+- Display the current folder and command when a process is running
+- Display username and host when in an SSH session
+- Display duration of failed process (defaults to `5`)
+- Display python virtualenv name if activated
 
 ## Configuration
 
@@ -103,8 +108,8 @@ Refer to [tools/installer.md](./tools/installer.md) to test the installer script
 
 ## Maintainers
 
-* [Rafael Rinaldi](https://github.com/rafaelrinaldi)
-* [Édouard Lopez](https://github.com/edouard-lopez)
+- [Rafael Rinaldi](https://github.com/rafaelrinaldi)
+- [Édouard Lopez](https://github.com/edouard-lopez)
 
 Kudos to all our awesome [:yellow_heart: contributors :yellow_heart:](../..//graphs/contributors)
 
