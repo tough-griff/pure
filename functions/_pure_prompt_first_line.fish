@@ -8,6 +8,7 @@ function _pure_prompt_first_line \
     set --local prompt (_pure_print_prompt \
                             (_pure_prompt_ssh) \
                             (_pure_prompt_git) \
+                            (_pure_prompt_node_version) \
                             (_pure_prompt_command_duration)
                         )
     set --local prompt_width (_pure_string_width $prompt)
