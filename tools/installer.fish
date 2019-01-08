@@ -39,8 +39,8 @@ end
 
 function pure::backup_existing_theme
     printf "\tBackuping existing theme"
-    set -l old_prompt $FISH_CONFIG_DIR/functions/fish_prompt.fish
-    set -l backup_prompt $old_prompt.ignore
+    set --local old_prompt $FISH_CONFIG_DIR/functions/fish_prompt.fish
+    set --local backup_prompt $old_prompt.ignore
     if test -f "$old_prompt"
         mv "$old_prompt" "$backup_prompt"
         printf "\t\tPrevious config saved to: %s%s%s." "$color_white" "$backup_prompt" "$color_normal"
@@ -49,11 +49,11 @@ end
 
 function pure::enable_autoloading
     printf "\tEnabling autoloading for pure's functions on shell init"
-    set -l marker "# THEME PURE #"
     touch "$FISH_CONFIG_DIR/config.fish"
     if not test (grep "$THEME_PURE" $FISH_CONFIG_DIR/config.fish 2>&1 >/dev/null)
-        echo "$marker" >> $FISH_CONFIG_DIR/config.fish
+        echo "# THEME PURE #" >> $FISH_CONFIG_DIR/config.fish
         echo "set fish_function_path $PURE_INSTALL_DIR/functions/" '$fish_function_path' >> $FISH_CONFIG_DIR/config.fish
+        echo "source $PURE_INSTALL_DIR/conf.d/pure.fish" >> $FISH_CONFIG_DIR/config.fish
     end
     ln -sf $PURE_INSTALL_DIR/fish_prompt.fish $FISH_CONFIG_DIR/functions/
 end

@@ -3,9 +3,21 @@
 * Be kind to others ;
 * Critic code not people.
 
+## Release
+
+Note, we follow [semver](https://semver.org/).
+
+Todo upon release:
+* [ ] updated `pure_version` (in [_conf.d/pure.fish_](conf.d/pure.fish)) ;
+* [ ] create a commit only containing above edit ;
+* [ ] create a git tag for said commit.
+
 ## Code Conventions for `pure`
 
-### Public item
+* Use the idiomatic [`test` instead of `[`](httpsc://fishshell.com/docs/current/commands.html#test) brackets (as recommended by the documentation).
+* Use **long form options**, _e.g._ `set --local`, as they are more explicit over cryptic 1-letter form.
+
+### Naming Public Item
 
 > Namespace your item with the prefix `pure_`.
 
@@ -14,7 +26,7 @@
 * filename: `pure_my_public_file.fish`
 * test file: `pure_my_public_file.test.fish`
 
-### Private item
+### Naming Private Item
 
 > Namespace your item with the prefix `_pure_` (begin with a single underscore).
 
@@ -29,9 +41,3 @@
 
 * filename: `my_tool.fish`
 * test file: `my_tool.test.fish`
-
----
-
-We will update if other cases arise.
-
-If you are in favor of adding a `CONTRIBUTING.md`, upvote #100.
