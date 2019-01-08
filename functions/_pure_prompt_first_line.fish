@@ -11,7 +11,6 @@ function _pure_prompt_first_line \
                             (_pure_prompt_command_duration)
                         )
     set --local prompt_width (_pure_string_width $prompt)
-    set --local current_folder (_pure_prompt_current_folder $prompt_width)
 
     set --local prompt_components
     if test $pure_prompt_begin_with_current_directory = true
