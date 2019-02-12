@@ -3,7 +3,7 @@ source $DIRNAME/../functions/_pure_parse_git_branch.fish
 
 
 function setup
-    rm --recursive --force /tmp/pure
+    rm -r -f /tmp/pure
 
     mkdir -p /tmp/pure
     cd /tmp/pure
@@ -13,7 +13,7 @@ function setup
     git config --local user.name "Your Name"
 end
 
-test "show branch name in gray"
+test "_pure_prompt_git_branch: show branch name in gray"
     (
         set pure_color_git_branch (set_color brblack)
 
@@ -22,5 +22,5 @@ test "show branch name in gray"
 end
 
 function teardown
-    rm --recursive --force /tmp/pure
+    rm -r -f /tmp/pure
 end

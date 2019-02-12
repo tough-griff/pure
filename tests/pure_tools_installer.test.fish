@@ -1,43 +1,43 @@
 source $DIRNAME/../tools/installer.fish
 
-test "pass argument to set $FISH_CONFIG_DIR"
+test "installer: pass argument to set $FISH_CONFIG_DIR"
     "/custom/config/path" = (
         pure::set_fish_config_path "/custom/config/path"
         echo "$FISH_CONFIG_DIR"
     )
 end
 
-test 'set $FISH_CONFIG_DIR to default value'
+test 'installer: set $FISH_CONFIG_DIR to default value'
     "$HOME/.config/fish" = (
         pure::set_fish_config_path
         echo "$FISH_CONFIG_DIR"
     )
 end
 
-test "pass arguments to set $PURE_INSTALL_DIR"
+test "installer: pass arguments to set $PURE_INSTALL_DIR"
     "/custom/theme/path" = (
         pure::set_pure_install_path "/custom/config/path" "/custom/theme/path"
         echo "$PURE_INSTALL_DIR"
     )
 end
 
-test 'set $PURE_INSTALL_DIR to default value'
+test 'installer: set $PURE_INSTALL_DIR to default value'
     "$FISH_CONFIG_DIR/functions/theme-pure" = (
         pure::set_pure_install_path
         echo $PURE_INSTALL_DIR
     )
 end
 
-test "check git is present"
+test "installer: check git is present"
     ( pure::check_git_is_available >/dev/null) $status -eq 0
 end
 
-test "backup existing theme prompt"
+test "installer: backup existing theme prompt"
     (
         set --local fake_prompt $FISH_CONFIG_DIR/functions/fish_prompt.fish
         touch "$fake_prompt"
         set --local backup_prompt $fake_prompt.ignore
-        rm --force "$backup_prompt"
+        rm -f "$backup_prompt"
 
         pure::backup_existing_theme >/dev/null
 
@@ -45,17 +45,17 @@ test "backup existing theme prompt"
     ) $status -eq 0
 end
 
-test "inject autoloading in config"
+test "installer: inject autoloading in config"
     (
         pure::enable_autoloading >/dev/null
         grep -q 'fish_function_path' $HOME/.config/fish/config.fish
     ) $status -eq 0
 end
 
-test "activate prompt"
+test "installer: activate prompt"
     (
         set --local active_prompt $FISH_CONFIG_DIR/functions/fish_prompt.fish
-        rm --force "$active_prompt"
+        rm -f "$active_prompt"
         mkdir -p $PURE_INSTALL_DIR; \
             and touch $PURE_INSTALL_DIR/fish_prompt.fish  # stub
 
@@ -65,7 +65,7 @@ test "activate prompt"
     ) $status -eq 0
 end
 
-test "append path to theme's functions"
+test "installer: append path to theme's functions"
     (
         pure::enable_autoloading >/dev/null
 
@@ -75,7 +75,7 @@ test "append path to theme's functions"
     ) $status -eq 0
 end
 
-test "load theme file"
+test "installer: load theme file"
     (
         echo 'set -g _pure_fresh_session true' >$FISH_CONFIG_DIR/functions/fish_prompt.fish
 

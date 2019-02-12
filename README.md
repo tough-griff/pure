@@ -1,13 +1,30 @@
-[travis-link]: https://travis-ci.org/rafaelrinaldi/pure
+[travis-link]: https://travis-ci.org/rafaelrinaldi/pure "TravisCI"
 [travis-badge]: https://travis-ci.org/rafaelrinaldi/pure.svg?branch=master
+[fish-2.5]: https://img.shields.io/badge/fish-v2.5.0-007EC7.svg?style=flat-square "Support Fish 2.5"
+[fish-2.6]: https://img.shields.io/badge/fish-v2.6.0-007EC7.svg?style=flat-square "Support Fish 2.6"
+[fish-2.7.1]: https://img.shields.io/badge/fish-v2.7.1.0-007EC7.svg?style=flat-square "Support Fish 2.7.1"
+[fish-3.0.0]: https://img.shields.io/badge/fish-v3.0.0.0-007EC7.svg?style=flat-square "Support Fish 3.0.0"
+[changelog-2.5]: https://github.com/fish-shell/fish-shell/releases/tag/2.5.0 "Changelog Fish 2.5"
+[changelog-2.6]: https://github.com/fish-shell/fish-shell/releases/tag/2.6.0 "Changelog Fish 2.6"
+[changelog-2.7.1]: https://github.com/fish-shell/fish-shell/releases/tag/2.7.1 "Changelog Fish 2.7.1"
+[changelog-3.0.0]: https://github.com/fish-shell/fish-shell/releases/tag/3.0.0 "Changelog Fish 3.0.0"
 
-# pure [![Fish Shell Version](https://img.shields.io/badge/fish-v2.5.0-007EC7.svg?style=flat-square)](http://fishshell.com) [![Build Status][travis-badge]][travis-link]
+# pure [![travis-badge]][travis-link] ![fish-2.5] ![fish-2.6] ![fish-2.7.1] ![fish-3.0.0] 
 
-> Port of the [`pure`](https://github.com/sindresorhus/pure) ZSH theme to Fish 🐟
+> Pretty, minimal and fast Fish 🐟 prompt, ported from [`zsh`](https://github.com/sindresorhus/pure).
 
+<<<<<<< HEAD
+=======
+
+<div align=center>
+  <a href="screenshot-dark.png" target=blank><img width=440 src=screenshot-dark.png alt="Pure with dark colorscheme"></a>
+  <a href="screenshot-light.png" target=blank><img width=440 src=screenshot-light.png alt="Pure with light colorscheme"></a>
+</div>
+
+>>>>>>> upstream/master
 ## Install
 
-**:warning: requirements**: fish `≥2.4`.
+**:warning: requirements**: fish `≥2.5`.
 
 ### Manually
 
@@ -44,78 +61,100 @@ fundle install;
 
 ## Features
 
-- Fully customizable
-- Display current directory tail
-- Display Git branch name
-- Display whether or not the working copy is dirty
-- Display ⇡ if there are stuff to be pushed
-- Display ⇣ if there are stuff to be pulled
-- Display prompt symbol in red if previous command has failed
-- Display the current folder and command when a process is running
-- Display username and host when in an SSH session
-- Display duration of failed process (defaults to `5`)
-- Display python virtualenv name if activated
+- Fully **customizable** ;
+- Excellent prompt character `❯` ;
+- Display current directory tail ;
+- Display `git` branch name ;
+  - Display `*` when `git` repository is _dirty_ ;
+  - Display `⇡` when branch is _ahead_ (commits to push) ;
+  - Display `⇣` when branch is _being_ (commits to pull) ;
+- Change `❯` to red when previous command has failed ;
+- Update terminal title with _current folder_ and _command_ ;
+- Display _username_ and _hostname_ when in an `SSH` session ;
+- Display _duration_ when command run more that `5` seconds ;
+- Display `Python` _virtualenv_ when activated ;
+- Fine control over **colors** ;
+- Right prompt control.
 
 ## Configuration
 
 You can tweak pretty much everything in `pure` by overriding variables in your `config.fish` file.
 
-```fish
-# Symbols
-set pure_symbol_prompt "❯"
+### Prompt Symbol
+| Option                          | Description    | Default value         |
+| :------------------------------ | :------------- | :-------------------- |
+| **`pure_symbol_prompt`**        | Prompt symbol. | `❯`                   |
+| **`pure_color_symbol_error`**   |                | `$pure_color_red`     |
+| **`pure_color_symbol_success`** |                | `$pure_color_magenta` |
 
-# Git
-set pure_symbol_git_arrow_down "⇣"
-set pure_symbol_git_arrow_up "⇡"
-set pure_symbol_git_dirty "*"
+### Git
 
-# Title
-set pure_symbol_horizontal_bar "—"
+| Option                           | Description                                        | Default value      |
+| :------------------------------- | :------------------------------------------------- | :----------------- |
+| **`pure_symbol_git_arrow_down`** | Symbol for branch ahead (commits to push).         | `⇣`                |
+| **`pure_symbol_git_arrow_up`**   | Symbol for branch being (commits to pull).         | `⇡`                |
+| **`pure_symbol_git_dirty`**      | Symbol for dirty repository (uncommitted changes). | `*`                |
+| **`pure_color_git_arrows`**      |                                                    | `$pure_color_cyan` |
+| **`pure_color_git_branch`**      |                                                    | `$pure_color_gray` |
+| **`pure_color_git_dirty`**       |                                                    | `$pure_color_gray` |
+:information_source:: Need [safer `git` symbols](https://github.com/sindresorhus/pure/wiki#safer-symbols)?
 
-# Base colors
-set pure_color_blue (set_color blue)
-set pure_color_cyan (set_color cyan)
-set pure_color_gray (set_color 93A1A1)
-set pure_color_magenta (set_color magenta)
-set pure_color_normal (set_color normal)
-set pure_color_red (set_color red)
-set pure_color_white (set_color white)
-set pure_color_yellow (set_color yellow)
+### Terminal Title
+| Option                           | Description                                                                         | Default value |
+| :------------------------------- | :---------------------------------------------------------------------------------- | :------------ |
+| **`pure_symbol_horizontal_bar`** | Separator for the terminal title between `current working directory` and `command`. | `—`          |
 
-# Colors used on symbols, attributes and events
-set pure_color_command_duration (set_color --background blue)
-set pure_color_error (set_color magenta)
-set pure_color_git_arrows $pure_color_cyan
-set pure_color_git_branch $pure_color_gray
-set pure_color_git_dirty $pure_color_gray
-set pure_color_ssh_host $pure_color_gray
-set pure_color_ssh_separator $pure_color_gray
-set pure_color_ssh_user_normal $pure_color_gray
-set pure_color_ssh_user_root $pure_color_white
-set pure_color_success (set_color green)
-set pure_color_virtualenv $pure_color_gray
+### Base Colors
+| Option                   | Default value         |
+| :----------------------- | :-------------------- |
+| **`pure_color_blue`**    | `(set_color blue)`    |
+| **`pure_color_cyan`**    | `(set_color cyan)`    |
+| **`pure_color_gray`**    | `(set_color brblack)` |
+| **`pure_color_magenta`** | `(set_color magenta)` |
+| **`pure_color_normal`**  | `(set_color normal)`  |
+| **`pure_color_red`**     | `(set_color red)`     |
+| **`pure_color_white`**   | `(set_color white)`   |
+| **`pure_color_yellow`**  | `(set_color yellow)`  |
 
-# Print current working directory at the beginning of prompt
-# true (default):   current directory, git, user@hostname (ssh-only), command duration
-# false:            user@hostname (ssh-only), current directory, git, command duration
-set pure_prompt_begin_with_current_directory true
+### Components Colors
+| Option                           | Default value       |
+| :------------------------------- | :------------------ |
+| **`pure_color_current_folder`**  | `$pure_color_blue`  |
+| **`pure_color_ssh_host`**        | `$pure_color_gray`  |
+| **`pure_color_ssh_separator`**   | `$pure_color_gray`  |
+| **`pure_color_ssh_user_normal`** | `$pure_color_gray`  |
+| **`pure_color_ssh_user_root`**   | `$pure_color_white` |
+| **`pure_color_virtualenv`**      | `$pure_color_gray`  |
 
-# Show exit code of last command as a separate prompt character (cf. https://github.com/sindresorhus/pure/wiki#show-exit-code-of-last-command-as-a-separate-prompt-character)
-# false - single prompt character, default
-# true - separate prompt character
-set pure_separate_prompt_on_error false
 
-# Max execution time of a process before its run time is shown when it exits
-set pure_command_max_exec_time 5
-```
+### Maximum Execution Time
+| Option                            | Description                                                                     | Default value        |
+| :-------------------------------- | :------------------------------------------------------------------------------ | :------------------- |
+| **`pure_command_max_exec_time`**  | Maximum execution time of a process before its run time is shown when it exits. | `5`                  |
+| **`pure_color_command_duration`** |                                                                                 | `$pure_color_yellow` |
+
+
+### Miscellaneous
+| Option                                         | Description                                                                                                                                                    | Default value |
+| :--------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------ |
+| **`pure_prompt_begin_with_current_directory`** | `true`: _current directory_, _git_, _user@hostname (ssh-only)_, _command duration_.<br/>`false`: _user@hostname (ssh-only)_, _current directory_, _git_, _command duration_. | `true`        |
+| **`pure_separate_prompt_on_error`**            | Show exit code of last command as a separate prompt character [:information_source:][exit-code]                                                                | `false`       |
+
+
+[exit-code]: https://github.com/sindresorhus/pure/wiki#show-exit-code-of-last-command-as-a-separate-prompt-character "See pure-zsh wiki"
+
+### Right Prompt
+| Option                        | Description             | Default value        |
+| :---------------------------- | :---------------------- | :------------------- |
+| **`pure_right_prompt`**       | Content of right prompt | `""`                 |
+| **`pure_color_right_prompt`** |                         | `$pure_color_normal` |
+
 
 ## Tests
 
 **requirements:** [`fishtape`](https://github.com/fisherman/fishtape).
 
     fishtape tests/*.test.fish
-
-Refer to [tools/installer.md](./tools/installer.md) to test the installer script.
 
 ## Maintainers
 

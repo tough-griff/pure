@@ -5,7 +5,7 @@ set fake_git_repo /tmp/pure
 set fake_git_bare /tmp/pure.git
 
 function setup
-    rm --recursive --force $fake_git_repo
+    rm -r -f $fake_git_repo
 
     git init --bare --quiet /tmp/pure.git
     mkdir -p $fake_git_repo
@@ -20,12 +20,12 @@ function setup
 end
 
 function teardown
-    rm --recursive --force \
+    rm -r -f \
         $fake_git_repo \
         $fake_git_bare
 end
 
-test "print nothing when no upstream repo"
+test "_pure_prompt_git_arrows: print nothing when no upstream repo"
     (
         cd $fake_git_repo
 
@@ -33,7 +33,7 @@ test "print nothing when no upstream repo"
     ) = $empty
 end
 
-test "show arrow UP when branch is AHEAD of upstream (need git push)"
+test "_pure_prompt_git_arrows: show arrow UP when branch is AHEAD of upstream (need git push)"
     (
         git push --set-upstream --quiet origin master > /dev/null
         touch missing-on-upstream.txt
@@ -48,7 +48,7 @@ test "show arrow UP when branch is AHEAD of upstream (need git push)"
     ) = (set_color cyan)'^'
 end
 
-test "show arrow DOWN when branch is BEHIND upstream (need git pull)"
+test "_pure_prompt_git_arrows: show arrow DOWN when branch is BEHIND upstream (need git pull)"
     (
         touch another-file.txt
         git add another-file.txt
