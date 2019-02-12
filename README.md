@@ -13,15 +13,6 @@
 
 > Pretty, minimal and fast Fish 🐟 prompt, ported from [`zsh`](https://github.com/sindresorhus/pure).
 
-<<<<<<< HEAD
-=======
-
-<div align=center>
-  <a href="screenshot-dark.png" target=blank><img width=440 src=screenshot-dark.png alt="Pure with dark colorscheme"></a>
-  <a href="screenshot-light.png" target=blank><img width=440 src=screenshot-light.png alt="Pure with light colorscheme"></a>
-</div>
-
->>>>>>> upstream/master
 ## Install
 
 **:warning: requirements**: fish `≥2.5`.
