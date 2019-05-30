@@ -13,7 +13,9 @@ RUN apk add \
     --no-cache \
     coreutils \
     curl \
-    gawk
+    gawk \
+    gzip \
+    tar
 
 # Install `fishtape to run tests
 USER nemo
@@ -22,11 +24,11 @@ RUN curl \
     --output $HOME/.config/fish/functions/fisher.fish \
     --create-dirs \
     git.io/fisher
-RUN fish -c 'fisher add jorgebucaran/fishtape'
+RUN fish -c 'fisher add jorgebucaran/fishtape@2.1.1'
 
 # Copy source code
 WORKDIR /tmp/.pure/
-COPY . /tmp/.pure/
+COPY --chown=nemo:nemo . /tmp/.pure/
 
 ENTRYPOINT ["fish", "-c"]
 CMD ["fishtape tests/*.test.fish"]
