@@ -1,23 +1,12 @@
 > ##### ✋ Psst! Migrating from v1.x to v2.x? We got you. Check our [**migration guide**](https://github.com/rafaelrinaldi/pure/releases/tag/v2.0.0) and happy upgrading!
 
-# pure [![travis-badge]][travis-link] ![fish-2.5] ![fish-2.6] ![fish-2.7.1] ![fish-3.0.0] 
+# pure [![travis-badge]][travis-link] ![fish-2.5] ![fish-2.6] ![fish-2.7.1] ![fish-3.0.0]
 
 > Pretty, minimal and fast Fish 🐟 prompt, ported from [`zsh`](https://github.com/sindresorhus/pure).
 
 ## Install
 
 **:warning: requirements**: fish `≥2.5`.
-
-### Manually
-
-Via [cURL](https://curl.haxx.se):
-
-```sh
-# Download the installer to `/tmp`
-curl https://raw.github.com/tough-griff/pure/master/tools/installer.fish --output /tmp/pure_installer.fish --location --silent
-# Source and trigger the installer
-source /tmp/pure_installer.fish; and install_pure
-```
 
 ### [Fisher](https://github.com/jorgebucaran/fisher)
 
